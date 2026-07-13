@@ -1,6 +1,8 @@
 # Build da API para produção
 FROM node:20-alpine AS build
 
+RUN apk add --no-cache openssl
+
 WORKDIR /app
 
 COPY package*.json ./
@@ -14,6 +16,8 @@ RUN npm run build
 
 # Imagem final, mais enxuta
 FROM node:20-alpine
+
+RUN apk add --no-cache openssl
 
 WORKDIR /app
 
